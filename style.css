@@ -1,0 +1,197 @@
+/* General body styles
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e1e2f, #4b6587);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  
+  
+  .container {
+    perspective: 1200px;
+  }
+  
+  
+  .box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg);
+    transition: transform 0.1s ease-out;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  
+   
+  .face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: background 0.5s, box-shadow 0.5s;
+  }
+  
+  .front { transform: translateZ(100px); }
+  .back { transform: rotateY(180deg) translateZ(100px); }
+  .right { transform: rotateY(90deg) translateZ(100px); }
+  .left { transform: rotateY(-90deg) translateZ(100px); }
+  .top { transform: rotateX(90deg) translateZ(100px); }
+  .bottom { transform: rotateX(-90deg) translateZ(100px); }
+  
+   
+  .face:hover {
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.8), 0 0 100px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(135deg, #ff6b6b, #ff9ff3);
+  }
+   */
+
+   /* General body styles */
+/* General body styles */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e1e2f, #4b6587);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+  }
+  
+  /* Container perspective */
+  .container {
+    perspective: 1500px; /* Perspective for 3D effect */
+    position: relative;
+  }
+  
+  /* 3D Box */
+  .box {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg); /* Initial rotation */
+    transition: transform 0.05s ease-out;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+    animation: glowingEffect 2s infinite alternate; /* Glow effect on box */
+  }
+  
+  /* Box Faces */
+  .face {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(135deg, #1c1c1c, #001f3d); /* Dark blue and black gradient */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: background 0.5s, transform 0.5s, box-shadow 0.5s;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  /* Faces positioning */
+  .front { transform: translateZ(125px); }
+  .back { transform: rotateY(180deg) translateZ(125px); }
+  .right { transform: rotateY(90deg) translateZ(125px); }
+  .left { transform: rotateY(-90deg) translateZ(125px); }
+  .top { transform: rotateX(90deg) translateZ(125px); }
+  .bottom { transform: rotateX(-90deg) translateZ(125px); }
+  
+  /* Hover effect for faces */
+  .face:hover {
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.8), 0 0 100px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(135deg, #004c8c, #001b2d);
+    transform: scale(1.1) rotate(15deg);
+    animation: faceHoverEffect 0.7s ease-out forwards;
+  }
+  
+  /* Hover animation for faces */
+  @keyframes faceHoverEffect {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    100% {
+      transform: scale(1.2) rotate(15deg);
+    }
+  }
+  
+  /* Particles animation */
+  @keyframes particleBurst {
+    0% {
+      opacity: 1;
+      transform: scale(0.5) translate(0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1) translate(50px, 50px);
+    }
+  }
+  
+  /* Particle element */
+  .particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #7a4dfc;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleBurst 1s ease-out forwards;
+  }
+  
+  /* Glowing border for the box */
+  .box::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border: 3px solid #7a4dfc;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7), 0 0 50px rgba(0, 0, 255, 0.5);
+    animation: glowingEffect 2s infinite alternate;
+  }
+  
+  /* Glowing effect */
+  @keyframes glowingEffect {
+    0% {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 0, 255, 0.5);
+    }
+    100% {
+      box-shadow: 0 0 50px rgba(0, 255, 255, 1), 0 0 80px rgba(0, 0, 255, 0.6);
+    }
+  }
+  
+  /* Adding animated light reflections */
+  @keyframes lightReflection {
+    0% {
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2), 0 0 50px rgba(255, 255, 255, 0.4);
+    }
+    100% {
+      box-shadow: 0 0 60px rgba(255, 255, 255, 0.6), 0 0 100px rgba(255, 255, 255, 0.8);
+    }
+  }
+  
+  .box:hover {
+    animation: lightReflection 2s infinite alternate;
+  }
+  
